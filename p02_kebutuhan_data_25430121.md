@@ -99,6 +99,35 @@ Denda           : Rp4.000 per hari per buku
 
 ## 5. Aturan bisnis
 
+| Kode | Aturan bisnis | Asal |
+|---|---|---|
+| AB-01 | Anggota hanya boleh melakukan peminjaman jika `status_anggota` menunjukkan anggota masih aktif. | Lingkup layanan, elemen `status_anggota` |
+| AB-02 | Setiap transaksi peminjaman dapat memuat paling banyak 6 eksemplar buku. | Parameter P |
+| AB-03 | Masa pinjam setiap buku adalah 7 hari sejak tanggal peminjaman. | Lingkup layanan |
+| AB-04 | Setiap peminjaman dapat diperpanjang paling banyak 1 kali, dengan tambahan masa pinjam 7 hari. | Lingkup layanan |
+| AB-05 | Permintaan perpanjangan hanya dapat dilakukan sebelum tanggal jatuh tempo peminjaman. | Asumsi desain |
+| AB-06 | Eksemplar hanya boleh dipinjam jika `status_eksemplar` bernilai `tersedia` dan `kondisi_eksemplar` bernilai `baik`. | Elemen `status_eksemplar` dan `kondisi_eksemplar` |
+| AB-07 | Satu eksemplar tidak boleh tercatat dalam lebih dari satu peminjaman yang masih aktif pada waktu yang sama. | Integritas proses peminjaman |
+| AB-08 | Keterlambatan pengembalian dikenakan denda sebesar Rp4.000 per hari untuk setiap buku yang terlambat. | Parameter P |
+| AB-09 | Tarif denda yang digunakan untuk suatu peminjaman ditentukan berdasarkan tarif yang berlaku pada tanggal peminjaman dan tidak berubah meskipun tarif denda diperbarui kemudian. | Keputusan desain |
+| AB-10 | `no_anggota` dan `kode_eksemplar` harus unik sehingga setiap anggota dan setiap eksemplar dapat diidentifikasi tanpa duplikasi. | Elemen `no_anggota` dan `kode_eksemplar` |
+| AB-11 | Setiap transaksi peminjaman, perpanjangan, pengembalian, dan pembayaran denda harus mencatat petugas yang menanganinya. | Lingkup layanan dan kebutuhan ketertelusuran |
+| AB-12 | Anggota tidak boleh melakukan peminjaman baru jika masih memiliki denda dengan `status_denda` bernilai `belum lunas`. | Keputusan desain |
+
+### Nilai `kondisi_eksemplar`
+
+Nilai yang digunakan untuk `kondisi_eksemplar` adalah:
+
+- `baik`
+- `rusak ringan`
+- `rusak berat`
+
+Hanya eksemplar dengan `kondisi_eksemplar` bernilai `baik` yang boleh dipinjam sesuai AB-06.
+
+### Catatan aturan denda
+
+Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan demikian, apabila tarif denda berubah di kemudian hari, transaksi peminjaman lama tetap menggunakan tarif yang berlaku pada saat transaksi tersebut dibuat.
+
 ## 6. Kebutuhan informasi
 
 ## 7. Matriks CRUD
