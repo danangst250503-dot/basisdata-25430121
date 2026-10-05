@@ -30,7 +30,72 @@ Kegiatan utama meliputi pendaftaran anggota, peminjaman buku, perpanjangan pemin
 
 ## 3. Dokumen sumber yang dianalisis
 
+Dokumen sumber yang dianalisis adalah **slip peminjaman** yang dirancang
+untuk Perpustakaan Pakde DS. Slip diberikan kepada anggota setiap kali
+melakukan peminjaman buku.
+
+### Rancangan slip peminjaman
+
+```text
+==================================================
+              PERPUSTAKAAN PAKDE DS
+==================================================
+No. Peminjaman : PMJ-261005-001
+Tanggal         : 05-10-2026 14:30
+No. Anggota     : A-0125
+Nama Anggota    : Sugeng
+Kode Petugas    : PTG-003
+Petugas         : Yono
+--------------------------------------------------
+| No | Kode Eksemplar | Judul Buku              |
+|----|----------------|-------------------------|
+| 1  | EX-0101        | Pemrograman Dasar      |
+| 2  | EX-0145        | Basis Data             |
+| 3  | EX-0202        | Algoritma              |
+--------------------------------------------------
+Jumlah Buku     : 3
+Jatuh Tempo     : 12-10-2026
+Perpanjangan    : Maksimal 1 kali selama 7 hari
+Denda           : Rp4.000 per hari per buku
+==================================================
+        Harap simpan slip ini sebagai bukti
+                peminjaman buku
+==================================================
+```
+### Pembedahan elemen data
+
+| Elemen pada slip | Disimpan / Dihitung | Keterangan |
+|---|---|---|
+| No. Peminjaman | Disimpan | Nomor unik untuk mengidentifikasi setiap transaksi peminjaman |
+| Tanggal dan jam peminjaman | Disimpan | Menunjukkan waktu sebenarnya saat transaksi peminjaman dilakukan |
+| No. Anggota | Disimpan | Menjadi rujukan ke anggota yang melakukan peminjaman |
+| Nama Anggota | Dihitung / ditampilkan dari data Anggota | Nama dapat diperoleh dari no_anggota, sehingga tidak perlu disimpan ulang pada transaksi |
+| Petugas | Disimpan | Identitas petugas yang menangani transaksi harus dicatat; sebaiknya menggunakan kode petugas, sedangkan nama hanya ditampilkan |
+| No. (urutan baris) | Dihitung | Hanya nomor urut tampilan pada slip dan tidak menjadi data utama transaksi |
+| Kode Eksemplar | Disimpan | Menunjukkan eksemplar fisik tertentu yang dipinjam |
+| Judul Buku | Dihitung / ditampilkan dari data Buku | Judul dapat diperoleh dari Kode Eksemplar melalui data Eksemplar dan Buku |
+| Jumlah Buku | Dihitung | Diperoleh dengan menghitung jumlah baris detail peminjaman |
+| Jatuh Tempo | Disimpan | Tanggal dapat berubah setelah perpanjangan, sehingga nilai yang berlaku untuk transaksi perlu dicatat |
+| Aturan perpanjangan | Dihitung / ditampilkan dari aturan bisnis | Maksimal 1 kali perpanjangan selama 7 hari merupakan aturan sistem, bukan data transaksi yang perlu disimpan pada slip |
+| Tarif denda | Disimpan | Tarif yang berlaku pada transaksi denda perlu disimpan agar transaksi lama tetap menggunakan tarif saat kejadian meskipun tarif berubah di kemudian hari |
+
 ## 4. Entitas kandidat dan elemen data
+
+| Entitas kandidat | Elemen data utama | Sumber |
+|---|---|---|
+| Anggota | id_anggota, no_anggota, nama_anggota, alamat_anggota, no_hp_anggota, tanggal_daftar_anggota, status_anggota | Formulir pendaftaran anggota |
+| Buku | id_buku, kode_buku, judul_buku, pengarang_buku, penerbit_buku, tahun_terbit_buku, kategori_buku | Daftar koleksi buku |
+| Eksemplar | id_eksemplar, kode_eksemplar, id_buku, kondisi_eksemplar, status_eksemplar, tanggal_masuk_eksemplar, asal_perolehan_eksemplar | Catatan penerimaan buku |
+| Petugas | id_petugas, kode_petugas, nama_petugas, no_hp_petugas, status_petugas | Data petugas perpustakaan |
+| Peminjaman | id_peminjaman, no_peminjaman, tanggal_jam_peminjaman, id_anggota, id_petugas, status_peminjaman | Slip peminjaman |
+| Detail peminjaman | id_detail_peminjaman, id_peminjaman, id_eksemplar, tanggal_jatuh_tempo, tanggal_kembali, jumlah_perpanjangan | Slip peminjaman dan catatan pengembalian |
+| Denda | id_denda, id_detail_peminjaman, tarif_denda, hari_terlambat, jumlah_denda, status_denda, tanggal_bayar_denda, id_petugas | Catatan atau kuitansi denda |
+
+**Catatan pemisahan Buku dan Eksemplar:** `Buku` menyimpan informasi mengenai judul atau jenis buku, sedangkan `Eksemplar` mewakili salinan fisik dari buku tersebut. Satu buku dapat memiliki beberapa eksemplar dengan kode, kondisi, dan status yang berbeda.
+
+**Catatan pemisahan Peminjaman dan Detail peminjaman:** `Peminjaman` menyimpan informasi yang berlaku untuk satu transaksi, seperti nomor peminjaman, anggota, petugas, dan waktu transaksi. `Detail peminjaman` menyimpan setiap eksemplar yang dipinjam beserta tanggal jatuh tempo dan pengembaliannya, sehingga satu transaksi dapat memiliki beberapa baris sampai maksimal 6 buku.
+
+**Catatan Denda:** `tarif_denda` disimpan pada transaksi denda berdasarkan tarif yang berlaku pada tanggal peminjaman. Dengan demikian, apabila tarif berubah di kemudian hari, nilai pada transaksi lama tetap dapat diketahui. `status_denda` digunakan untuk membedakan denda yang belum lunas dan sudah lunas.
 
 ## 5. Aturan bisnis
 
