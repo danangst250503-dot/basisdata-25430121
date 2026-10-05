@@ -1,12 +1,15 @@
 # Dokumen Kebutuhan Data - Perpustakaan Pakde DS
 
-Disusun oleh: Danang Setiawan (25430121) - Kelas A
-Milestone Proyek 2, Praktikum Basis Data
-Tema: Perpustakaan (kode tema: perpus) - berdasarkan dua digit akhir NIM 21
+- **Disusun oleh:** Danang Setiawan
+- **NIM:** 25430121
+- **Kelas:** A
+- **Mata kuliah:** Praktikum Basis Data
+- **Milestone:** Proyek 2 (Pertemuan 2)
+- **Tema:** Perpustakaan (kode tema: `perpus`) — berdasarkan dua digit akhir NIM 21
 
 ## 1. Latar belakang dan aktivitas organisasi
 
-Perpustakaan Pakde adalah perpustakaan milik desa yang melayani warga desa setempat, terutama pelajar dan masyarakat umum yang ingin membaca atau meminjam buku. Perpustakaan memiliki sekitar 1.200 eksemplar buku yang dikelola oleh 3 petugas perpustakaan dan dipimpin oleh 1 kepala perpustakaan. Koleksi buku yang dikelola mencakup informasi seperti judul, pengarang, penerbit, tahun terbit, dan jumlah eksemplar yang tersedia.
+Perpustakaan Pakde DS adalah perpustakaan milik desa yang melayani warga desa setempat, terutama pelajar dan masyarakat umum yang ingin membaca atau meminjam buku. Perpustakaan memiliki sekitar 1.200 eksemplar buku yang dikelola oleh 3 petugas perpustakaan dan dipimpin oleh 1 kepala perpustakaan. Koleksi buku yang dikelola mencakup informasi seperti judul, pengarang, penerbit, tahun terbit, dan jumlah eksemplar yang tersedia.
 
 Kegiatan utama meliputi pendaftaran anggota, peminjaman buku, perpanjangan peminjaman, pengembalian buku, dan pencatatan denda keterlambatan. Anggota dapat meminjam paling banyak 6 buku sekaligus dengan masa pinjam 7 hari dan satu kali perpanjangan selama 7 hari berikutnya. Keterlambatan dikenakan denda sebesar Rp4.000 per hari untuk setiap buku, sedangkan perpustakaan melayani sekitar 60 transaksi peminjaman dan pengembalian setiap hari. Saat ini pencatatan masih menggunakan buku tulis sehingga petugas kesulitan mengetahui buku yang sedang dipinjam, status pengembalian, dan riwayat transaksi anggota.
 
