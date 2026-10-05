@@ -1,7 +1,10 @@
 # Dokumen Kebutuhan Data - Koperasi Mahasiswa Sejahtera (Kopma)
 
-Disusun oleh: Danang Setiawan (25430121) - Kelas A
-Studi kasus latihan Modul 2, Praktikum Basis Data
+- **Disusun oleh:** Danang Setiawan
+- **NIM:** 25430121
+- **Kelas:** A
+- **Mata kuliah:** Praktikum Basis Data
+- **Jenis dokumen:** Studi kasus latihan Modul 2 (Koperasi Mahasiswa Sejahtera)
 
 ## 1. Latar belakang dan aktivitas organisasi
 
