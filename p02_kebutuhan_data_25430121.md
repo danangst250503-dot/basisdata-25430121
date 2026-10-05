@@ -130,6 +130,16 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 
 ## 6. Kebutuhan informasi
 
+| Kode | Kebutuhan informasi | Data yang diperlukan |
+|---|---|---|
+| KI-01 | Daftar eksemplar dan judul buku yang sedang dipinjam saat ini | Peminjaman, detail peminjaman, eksemplar, buku |
+| KI-02 | Daftar peminjaman yang sudah melewati tanggal jatuh tempo tetapi belum dikembalikan | Peminjaman, detail peminjaman, anggota, eksemplar |
+| KI-03 | Riwayat peminjaman setiap anggota dalam 12 bulan terakhir | Anggota, peminjaman, detail peminjaman, eksemplar, buku |
+| KI-04 | Sepuluh buku yang paling sering dipinjam per bulan berdasarkan jumlah peminjaman | Buku, eksemplar, detail peminjaman |
+| KI-05 | Jumlah peminjaman, jumlah pengembalian, dan total denda per bulan | Peminjaman, detail peminjaman, denda |
+| KI-06 | Daftar anggota yang masih memiliki denda belum lunas saat ini | Anggota, denda |
+| KI-07 | Daftar eksemplar yang memiliki kondisi `rusak ringan` atau `rusak berat` saat ini | Eksemplar, buku |
+
 ## 7. Matriks CRUD
 
 ## 8. Kamus data awal
