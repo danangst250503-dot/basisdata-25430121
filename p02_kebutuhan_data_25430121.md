@@ -142,6 +142,19 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 
 ## 7. Matriks CRUD
 
+| Proses | Anggota | Buku | Eksemplar | Petugas | Peminjaman | Detail | Denda |
+|---|---|---|---|---|---|---|---|
+| PB-01 Mendaftarkan anggota | C | | | | | | |
+| PB-02 Mencatat peminjaman buku | R | R | R, U | R | C | C | R |
+| PB-03 Memperpanjang peminjaman | | | | R | R | R, U | |
+| PB-04 Mencatat pengembalian buku | | | R, U | R | R | R, U | |
+| PB-05 Mencatat denda keterlambatan | | | | R | R | R | C |
+| PB-06 Mencatat buku baru dan kondisi eksemplar | | R, C | C | R | | | |
+| PB-07 Memperbarui status keanggotaan | R, U | | | R | | | |
+| PB-08 Mengelola data petugas | | | | C, R, U | | | |
+| PB-09 Menyusun laporan bulanan | R | R | R | R | R | R | R |
+| PB-10 Menerima pembayaran denda | R | | | R | R | R | R, U |
+
 ## 8. Kamus data awal
 
 ## 9. Kebutuhan non-fungsional data
