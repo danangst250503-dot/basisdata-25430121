@@ -21,6 +21,8 @@ penerimaan barang, dan pelaporan bulanan.
 | PB-05 | Menyusun laporan bulanan | Ketua koperasi | Awal bulan |
 | PB-06 | Mengelola data pemasok | Petugas gudang | Pemasok baru atau data pemasok berubah |
 | PB-07 | Memperbarui status keanggotaan | Ketua koperasi | Anggota lulus, tidak memenuhi syarat, atau mengundurkan diri |
+| PB-08 | Menukar poin loyalitas | Kasir (atas permintaan anggota) | Anggota aktif memiliki saldo minimal 50 poin dan meminta penukaran saat pembayaran |
+| PB-09 | Mengelola data barang | Petugas gudang | Barang baru mulai dijual atau data barang berubah |
 
 ## 3. Dokumen sumber yang dianalisis
 
@@ -51,6 +53,7 @@ Setiap isian pada nota diperlakukan sebagai kandidat elemen data.
 | Petugas | kode petugas, nama, peran (kasir/gudang/ketua) | Wawancara |
 | Pemasok | kode, nama, telepon, alamat | Faktur pemasok |
 | Pembelian dan detailnya | nomor faktur, tanggal, pemasok, barang, qty, harga beli | Faktur pemasok |
+| Transaksi Poin | id_transaksi_poin, id_anggota, id_penjualan, tanggal_transaksi_poin, jenis_transaksi_poin, jumlah_transaksi_poin | Skenario latihan E.1 |
 
 **Catatan pemisahan Penjualan dan Detail penjualan:** data yang muncul sekali per
 nota (nomor, tanggal, kasir, anggota) dipisahkan dari data yang berulang per baris
@@ -67,6 +70,11 @@ berbeda-beda.
 | AB-04 | Harga jual yang dipakai pada nota disimpan per baris dan tidak berubah meski harga barang kemudian naik. | Keluhan ketua |
 | AB-05 | NIM anggota unik; pencarian anggota dapat dilakukan lewat nomor anggota atau NIM. | Keluhan kasir |
 | AB-06 | Pesanan pembelian dibuat bila stok kurang dari batas minimum barang tersebut. | Narasi, pemicu PB-03 |
+| AB-07 (E.1) | Setiap kelipatan Rp10.000 dari total belanja anggota aktif dalam satu nota menghasilkan 1 poin. | Skenario latihan |
+| AB-08 (E.1) | Sebanyak 50 poin dapat ditukar dengan potongan harga sebesar Rp5.000. | Skenario latihan |
+| AB-09 (E.1) | Penukaran poin hanya dapat dilakukan oleh anggota aktif yang memiliki saldo minimal 50 poin. | Asumsi |
+| AB-10 (E.1) | Setiap penukaran 50 poin dicatat sebagai transaksi penukaran dan mengurangi saldo poin anggota sebanyak 50 poin. | Asumsi |
+| AB-11 (E.1) | Diskon anggota 5% dan potongan Rp5.000 dari penukaran poin tidak digunakan bersamaan dalam satu nota. | Asumsi |
 
 ## 6. Kebutuhan informasi
 
@@ -76,18 +84,25 @@ berbeda-beda.
 | KI-02 | Lima barang terlaris per bulan berdasarkan qty | Detail penjualan, barang |
 | KI-03 | Barang dengan stok di bawah batas minimum | Barang |
 | KI-04 | Sepuluh anggota dengan belanja terbesar per bulan | Penjualan, detail penjualan, anggota |
+| KI-05 (E.1) | Jumlah poin yang diperoleh dan ditukar anggota per bulan | Transaksi poin, anggota |
+| KI-06 (E.1) | Sepuluh anggota dengan perolehan poin terbanyak per bulan | Transaksi poin, anggota |
 
 ## 7. Matriks CRUD
 
-| Proses | Anggota | Barang | Penjualan | Detail | Pemasok | Pembelian |
-|---|---|---|---|---|---|---|
-| PB-01 Daftar anggota | C | | | | | |
-| PB-02 Catat penjualan | R | R, U | C | C | | |
-| PB-03 Pesan ke pemasok | | R | | | R | C |
-| PB-04 Terima barang | | U | | | R | U |
-| PB-05 Laporan bulanan | R | R | R | R | | R |
-| PB-06 Mengelola data pemasok | | | | | C, U | |
-| PB-07 Memperbarui status keanggotaan | U | | | | | |
+| Proses | Anggota | Barang | Penjualan | Detail | Pemasok | Pembelian | Transaksi Poin |
+|---|---|---|---|---|---|---|---|
+| PB-01 Daftar anggota | C | | | | | | |
+| PB-02 Catat penjualan | R | R, U | C | C | | | C |
+| PB-03 Pesan ke pemasok | | R | | | R | C | |
+| PB-04 Terima barang | | U | | | R | U | |
+| PB-05 Laporan bulanan | R | R | R | R | | R | R |
+| PB-06 Mengelola data pemasok | | | | | C, U | | |
+| PB-07 Memperbarui status keanggotaan | U | | | | | | |
+| PB-08 Menukar poin loyalitas | R | | | | | | C |
+| PB-09 Mengelola data barang | | C, U | | | | | |
+
+**Catatan desain saldo poin (E.1):** saldo poin anggota tidak disimpan sebagai kolom tersendiri, melainkan dihitung dari riwayat `Transaksi Poin` (jumlah perolehan dikurangi jumlah penukaran). Karena itu PB-02 dan PB-08 hanya membaca (`R`) data Anggota. Transaksi Poin tidak pernah diberi `U`, karena riwayat dicatat sebagai baris baru dan tidak diubah.
+
 
 **Temuan pemeriksaan matriks (Titik Analisis 3):**
 
@@ -99,6 +114,10 @@ Tidak adanya `C` pada kolom `Pemasok` berarti belum ada proses yang membuat atau
 
 Status aktif anggota juga perlu diperhatikan karena pada proses yang ada belum terdapat proses yang mengubah status tersebut. Saya menambahkan **PB-07 Memperbarui status keanggotaan** dengan aktor **ketua koperasi**. Pemicu proses ini adalah ketika status keanggotaan anggota berubah, misalnya karena anggota sudah lulus, tidak lagi memenuhi syarat keanggotaan, atau mengundurkan diri. Proses ini diperlukan agar perubahan status anggota dapat dicatat dan data anggota tetap sesuai dengan kondisi sebenarnya.
 
+**Bagian C — Barang (pemeriksaan tambahan)**
+
+Pemeriksaan yang sama saya terapkan ke seluruh kolom matriks, dan kolom `Barang` ternyata juga tidak memiliki `C`. Semua proses hanya membaca atau mengubah stok, tetapi tidak ada proses yang menambahkan barang baru ke daftar maupun memperbarui harga jualnya. Padahal keluhan ketua koperasi menyebut harga barang sering naik, yang berarti data barang memang berubah dari waktu ke waktu. Karena itu saya menambahkan **PB-09 Mengelola data barang** dengan aktor **petugas gudang**, yang memberi `C` saat barang baru mulai dijual dan `U` saat data barang diperbarui.
+
 ## 8. Kamus data awal
 
 | Elemen | Arti | Contoh | Aturan | Penanggung jawab |
@@ -109,6 +128,12 @@ Status aktif anggota juga perlu diperhatikan karena pada proses yang ada belum t
 | no_nota_penjualan | Nomor nota penjualan | PJ-2609-0142 | Unik per nota (AB-01) | Kasir |
 | harga_satuan_detail_penjualan | Harga jual saat transaksi | 4000 | Bilangan bulat >= 0 (AB-04) | Kasir |
 | stok_barang | Jumlah barang tersedia | 35 | Bilangan bulat >= 0 (AB-03) | Petugas gudang |
+| id_transaksi_poin | Identitas unik transaksi poin | TP-0001 | Unik | Kasir |
+| id_anggota | Anggota pemilik transaksi poin | A-0457 | Mengacu ke anggota yang valid | Ketua |
+| id_penjualan | Nota yang terkait dengan transaksi poin | PJ-2609-0142 | Mengacu ke penjualan yang valid | Kasir |
+| tanggal_transaksi_poin | Tanggal perolehan atau penukaran poin | 2026-10-05 | Format tanggal valid | Kasir |
+| jenis_transaksi_poin | Jenis transaksi poin | perolehan | Hanya perolehan atau penukaran | Kasir |
+| jumlah_transaksi_poin | Jumlah poin yang diperoleh atau ditukar | 5 | Bilangan bulat > 0 (AB-07, AB-10) | Kasir |
 
 ## 9. Kebutuhan non-fungsional data
 
