@@ -204,4 +204,52 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 
 ## 9. Kebutuhan non-fungsional data
 
+### Perhitungan parameter P
+
+Dua digit terakhir NIM saya adalah 21.
+
+P = (21 mod 9) + 1
+P = 3 + 1
+P = 4
+
+P digunakan untuk menentukan beberapa parameter proyek sebagai berikut:
+
+- Maksimal buku dalam satu peminjaman = P + 2 = 4 + 2 = **6 buku**
+- Denda keterlambatan per hari per buku = P ribu = **Rp4.000**
+- Perkiraan transaksi per hari = 40 + 5P = 40 + (5 × 4) = **60 transaksi per hari**
+
+### Volume data
+
+Perpustakaan Pakde DS diperkirakan memiliki sekitar **800 judul buku** dengan total sekitar **1.200 eksemplar**. Jumlah anggota diperkirakan sekitar **500 orang**, sedangkan aktivitas peminjaman dan pengembalian mencapai sekitar **60 transaksi per hari**.
+
+### Retensi data
+
+Data transaksi peminjaman, pengembalian, perpanjangan, dan denda disimpan minimal **5 tahun**. Data tersebut dipertahankan agar riwayat transaksi anggota dan catatan denda tetap dapat ditelusuri ketika diperlukan.
+
+### Privasi data
+
+Data pribadi anggota yang perlu dilindungi meliputi `nama_anggota`, `alamat_anggota`, dan `no_hp_anggota`. Petugas perpustakaan dapat mengakses data yang diperlukan untuk melayani transaksi, seperti `no_anggota` dan `nama_anggota`, sedangkan data alamat dan nomor HP hanya boleh diakses oleh kepala perpustakaan.
+
+Riwayat peminjaman anggota juga termasuk data yang perlu dibatasi karena dapat menunjukkan aktivitas seorang anggota. Petugas hanya dapat melihat riwayat yang diperlukan untuk melayani transaksi, sedangkan akses penuh terhadap riwayat peminjaman anggota diberikan kepada kepala perpustakaan.
+
 ## 10. Isu kualitas data yang diantisipasi
+
+Beberapa isu kualitas data yang perlu diantisipasi adalah:
+
+1. **Status eksemplar tidak sesuai kondisi sebenarnya (konsistensi)**  
+   Jika `status_eksemplar` tidak diperbarui saat buku dipinjam atau dikembalikan, sistem dapat menunjukkan eksemplar masih dipinjam padahal buku sebenarnya sudah berada di rak. Hal ini dapat menyebabkan buku yang tersedia dianggap tidak dapat dipinjam.
+
+2. **Status pengembalian tidak tercatat (kelengkapan)**  
+   Jika `tanggal_kembali` tidak diisi ketika buku sudah dikembalikan, sistem dapat menganggap peminjaman masih berlangsung. Akibatnya, daftar keterlambatan dan status eksemplar dapat menjadi tidak sesuai dengan kondisi sebenarnya.
+
+3. **Riwayat peminjaman anggota tidak lengkap (kelengkapan dan ketertelusuran)**  
+   Setiap transaksi peminjaman dan pengembalian perlu dicatat dengan benar agar riwayat anggota dapat ditelusuri. Data yang hilang akan menyulitkan petugas ketika mencari riwayat peminjaman atau memeriksa transaksi sebelumnya.
+
+4. **Jumlah denda tidak sesuai perhitungannya (akurasi)**  
+   Nilai `jumlah_denda` harus sesuai dengan `tarif_denda × hari_terlambat`. Jika salah satu nilai yang menjadi dasar perhitungan salah, jumlah denda yang ditagihkan kepada anggota juga akan salah.
+
+5. **Kondisi eksemplar tidak diperbarui (kemutakhiran)**  
+   Kondisi fisik buku dapat berubah setelah digunakan, tetapi perubahan tersebut hanya dicatat melalui proses pengelolaan kondisi eksemplar. Jika pemeriksaan kondisi tidak dilakukan dan datanya tidak diperbarui, sistem dapat menunjukkan kondisi buku yang sudah tidak sesuai dengan keadaan fisiknya.
+
+6. **Data peminjaman tidak dapat ditelusuri ke petugas (ketertelusuran)**  
+   Setiap transaksi harus mencatat petugas yang menanganinya. Jika `id_petugas` tidak tercatat dengan benar, perpustakaan akan kesulitan mengetahui siapa yang menangani suatu transaksi ketika terjadi masalah atau diperlukan pemeriksaan.
