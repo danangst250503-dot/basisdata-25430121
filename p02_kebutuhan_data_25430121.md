@@ -157,6 +157,51 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 
 ## 8. Kamus data awal
 
+| Entitas | Elemen | Arti | Contoh | Aturan | Penanggung jawab |
+|---|---|---|---|---|---|
+| Anggota | id_anggota | Identitas unik anggota | 1 | Unik sebagai identitas anggota | Petugas perpustakaan |
+| Anggota | no_anggota | Nomor anggota yang digunakan dalam transaksi | A-0125 | Harus unik (AB-10) | Petugas perpustakaan |
+| Anggota | nama_anggota | Nama lengkap anggota | Budi Santoso | Wajib diisi | Petugas perpustakaan |
+| Anggota | alamat_anggota | Alamat tempat tinggal anggota | Desa Sukamaju | Wajib diisi | Petugas perpustakaan |
+| Anggota | no_hp_anggota | Nomor HP anggota | 081234567890 | Data pribadi, akses terbatas | Kepala perpustakaan |
+| Anggota | status_anggota | Status keaktifan anggota | aktif | Hanya `aktif` atau `nonaktif`; hanya `aktif` yang boleh meminjam (AB-01) | Kepala perpustakaan |
+| Buku | id_buku | Identitas unik buku | 1 | Unik sebagai identitas buku | Petugas perpustakaan |
+| Buku | kode_buku | Kode identifikasi buku | BK-0101 | Harus unik | Petugas perpustakaan |
+| Buku | judul_buku | Judul buku | Basis Data Dasar | Wajib diisi | Petugas perpustakaan |
+| Buku | pengarang_buku | Nama pengarang buku | Abdul Karim | Wajib diisi | Petugas perpustakaan |
+| Buku | penerbit_buku | Nama penerbit buku | Informatika Press | Wajib diisi | Petugas perpustakaan |
+| Buku | tahun_terbit_buku | Tahun buku diterbitkan | 2024 | Berupa tahun yang valid | Petugas perpustakaan |
+| Eksemplar | id_eksemplar | Identitas unik eksemplar fisik | 1 | Unik sebagai identitas eksemplar | Petugas perpustakaan |
+| Eksemplar | kode_eksemplar | Kode identifikasi eksemplar fisik | EX-0101 | Harus unik (AB-10) | Petugas perpustakaan |
+| Eksemplar | id_buku | Rujukan ke buku yang dimiliki eksemplar | 1 | Harus mengacu ke buku yang valid | Petugas perpustakaan |
+| Eksemplar | kondisi_eksemplar | Kondisi fisik eksemplar | baik | Hanya `baik`, `rusak ringan`, atau `rusak berat`; hanya `baik` yang boleh dipinjam (AB-06) | Petugas perpustakaan |
+| Eksemplar | status_eksemplar | Status operasional eksemplar | tersedia | Hanya `tersedia`, `dipinjam`, atau `tidak tersedia`; peminjaman hanya untuk status `tersedia` (AB-06, AB-07) | Petugas perpustakaan |
+| Eksemplar | tanggal_masuk_eksemplar | Tanggal eksemplar masuk ke perpustakaan | 2026-01-15 | Menggunakan tanggal yang valid | Petugas perpustakaan |
+| Eksemplar | asal_perolehan_eksemplar | Sumber diperolehnya eksemplar | Sumbangan | Diisi berdasarkan asal buku, misalnya pengadaan atau sumbangan | Petugas perpustakaan |
+| Petugas | id_petugas | Identitas unik petugas | 1 | Unik sebagai identitas petugas | Kepala perpustakaan |
+| Petugas | kode_petugas | Kode identifikasi petugas | PT-001 | Harus unik | Kepala perpustakaan |
+| Petugas | nama_petugas | Nama lengkap petugas | Yono | Wajib diisi | Kepala perpustakaan |
+| Petugas | no_hp_petugas | Nomor HP petugas | 081298765432 | Nomor kontak petugas | Kepala perpustakaan |
+| Petugas | status_petugas | Status keaktifan petugas | aktif | Hanya `aktif` atau `nonaktif` | Kepala perpustakaan |
+| Peminjaman | id_peminjaman | Identitas unik transaksi peminjaman | 1 | Unik sebagai identitas transaksi | Petugas perpustakaan |
+| Peminjaman | no_peminjaman | Nomor transaksi peminjaman | PMJ-261005-001 | Harus unik | Petugas perpustakaan |
+| Peminjaman | tanggal_jam_peminjaman | Tanggal dan waktu peminjaman | 2026-10-05 14:30 | Harus mencatat waktu transaksi | Petugas perpustakaan |
+| Peminjaman | id_anggota | Rujukan anggota yang melakukan peminjaman | 1 | Harus mengacu ke anggota yang valid | Petugas perpustakaan |
+| Peminjaman | id_petugas | Rujukan petugas yang menangani peminjaman | 1 | Harus mengacu ke petugas yang valid dan mendukung ketertelusuran (AB-11) | Petugas perpustakaan |
+| Detail peminjaman | id_detail_peminjaman | Identitas unik detail peminjaman | 1 | Unik sebagai identitas detail | Petugas perpustakaan |
+| Detail peminjaman | id_peminjaman | Rujukan ke transaksi peminjaman | 1 | Harus mengacu ke peminjaman yang valid | Petugas perpustakaan |
+| Detail peminjaman | id_eksemplar | Rujukan ke eksemplar yang dipinjam | 1 | Harus mengacu ke eksemplar yang valid | Petugas perpustakaan |
+| Detail peminjaman | tanggal_jatuh_tempo | Batas tanggal pengembalian buku | 2026-10-12 | Masa pinjam 7 hari dan dapat berubah jika dilakukan perpanjangan (AB-03, AB-04) | Petugas perpustakaan |
+| Detail peminjaman | tanggal_kembali | Tanggal buku dikembalikan | 2026-10-15 | Diisi saat buku dikembalikan | Petugas perpustakaan |
+| Detail peminjaman | jumlah_perpanjangan | Jumlah perpanjangan yang sudah dilakukan | 1 | Maksimal 1 kali (AB-04) | Petugas perpustakaan |
+| Denda | id_denda | Identitas unik transaksi denda | 1 | Unik sebagai identitas denda | Petugas perpustakaan |
+| Denda | id_detail_peminjaman | Rujukan ke detail peminjaman yang terkena denda | 1 | Harus mengacu ke detail peminjaman yang valid | Petugas perpustakaan |
+| Denda | tarif_denda | Tarif denda per hari per buku | 4000 | Ditentukan berdasarkan tarif yang berlaku pada tanggal peminjaman dan tidak berubah kemudian (AB-08, AB-09) | Petugas perpustakaan |
+| Denda | hari_terlambat | Jumlah hari keterlambatan pengembalian | 3 | Dihitung dari keterlambatan pengembalian | Petugas perpustakaan |
+| Denda | jumlah_denda | Jumlah uang denda yang ditetapkan pada transaksi | 12000 | Nilai = `tarif_denda × hari_terlambat` dan disimpan karena menjadi jumlah denda yang benar-benar ditagihkan/dibayar | Petugas perpustakaan |
+| Denda | status_denda | Status pembayaran denda | belum lunas | Hanya `belum lunas` atau `lunas`; anggota dengan denda `belum lunas` tidak boleh meminjam (AB-12) | Petugas perpustakaan |
+| Denda | tanggal_bayar_denda | Tanggal pembayaran denda | 2026-10-16 | Diisi ketika denda dibayar | Petugas perpustakaan |
+
 ## 9. Kebutuhan non-fungsional data
 
 ## 10. Isu kualitas data yang diantisipasi
