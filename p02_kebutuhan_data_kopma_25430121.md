@@ -78,6 +78,7 @@ berbeda-beda.
 | AB-09 (E.1) | Penukaran poin hanya dapat dilakukan oleh anggota aktif yang memiliki saldo minimal 50 poin. | Asumsi |
 | AB-10 (E.1) | Setiap penukaran 50 poin dicatat sebagai transaksi penukaran dan mengurangi saldo poin anggota sebanyak 50 poin. | Asumsi |
 | AB-11 (E.1) | Diskon anggota 5% dan potongan Rp5.000 dari penukaran poin tidak digunakan bersamaan dalam satu nota. | Asumsi |
+| AB-12 (M3) | Setiap penerimaan barang dari pemasok harus mencatat petugas gudang yang menerima barang. | Titik Analisis 3 Modul 3 |
 
 ## 6. Kebutuhan informasi
 
