@@ -44,7 +44,7 @@ No. Peminjaman : PMJ-261005-001
 Tanggal         : 05-10-2026 14:30
 No. Anggota     : A-0125
 Nama Anggota    : Sugeng
-Kode Petugas    : PTG-003
+Kode Petugas    : PT-001
 Petugas         : Yono
 --------------------------------------------------
 | No | Kode Eksemplar | Judul Buku              |
@@ -113,6 +113,12 @@ Denda           : Rp4.000 per hari per buku
 | AB-10 | `no_anggota` dan `kode_eksemplar` harus unik sehingga setiap anggota dan setiap eksemplar dapat diidentifikasi tanpa duplikasi. | Elemen `no_anggota` dan `kode_eksemplar` |
 | AB-11 | Setiap transaksi peminjaman, perpanjangan, pengembalian, dan pembayaran denda harus mencatat petugas yang menanganinya. | Lingkup layanan dan kebutuhan ketertelusuran |
 | AB-12 | Anggota tidak boleh melakukan peminjaman baru jika masih memiliki denda dengan `status_denda` bernilai `belum lunas`. | Keputusan desain |
+| AB-13 | Setiap transaksi peminjaman harus memuat minimal satu eksemplar buku. | Pemeriksaan kardinalitas Modul 3 |
+| AB-14 | Setiap judul buku yang dicatat dalam perpustakaan harus memiliki minimal satu eksemplar fisik. | PB-06 dan keputusan desain |
+
+**Catatan penambahan (Modul 3):** AB-13 dan AB-14 ditambahkan setelah pemeriksaan
+kardinalitas pada Modul 3 menemukan dua relasi yang nilai minimumnya belum memiliki
+dasar aturan bisnis.
 
 ### Nilai `kondisi_eksemplar`
 
@@ -137,7 +143,7 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 | KI-03 | Riwayat peminjaman setiap anggota dalam 12 bulan terakhir | Anggota, peminjaman, detail peminjaman, eksemplar, buku |
 | KI-04 | Sepuluh buku yang paling sering dipinjam per bulan berdasarkan jumlah peminjaman | Buku, eksemplar, detail peminjaman |
 | KI-05 | Jumlah peminjaman, jumlah pengembalian, dan total denda per bulan | Peminjaman, detail peminjaman, denda |
-| KI-06 | Daftar anggota yang masih memiliki denda belum lunas saat ini | Anggota, denda |
+| KI-06 | Daftar anggota yang masih memiliki denda belum lunas saat ini | Anggota, peminjaman, detail peminjaman, denda |
 | KI-07 | Daftar eksemplar yang memiliki kondisi `rusak ringan` atau `rusak berat` saat ini | Eksemplar, buku |
 
 ## 7. Matriks CRUD
