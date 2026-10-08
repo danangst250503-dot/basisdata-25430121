@@ -47,11 +47,11 @@ Nama Anggota    : Sugeng
 Kode Petugas    : PT-001
 Petugas         : Yono
 --------------------------------------------------
-| No | Kode Eksemplar | Judul Buku              |
-|----|----------------|-------------------------|
-| 1  | EX-0101        | Pemrograman Dasar      |
-| 2  | EX-0145        | Basis Data             |
-| 3  | EX-0202        | Algoritma              |
+| No | Kode Eksemplar | Judul Buku               |
+|----|----------------|--------------------------|
+| 1  | EX-0101        | Pemrograman Dasar        |
+| 2  | EX-0145        | Basis Data               |
+| 3  | EX-0202        | Algoritma                |
 --------------------------------------------------
 Jumlah Buku     : 3
 Jatuh Tempo     : 12-10-2026
