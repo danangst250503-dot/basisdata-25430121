@@ -84,10 +84,10 @@ Denda           : Rp4.000 per hari per buku
 | Entitas kandidat | Elemen data utama | Sumber |
 |---|---|---|
 | Anggota | id_anggota, no_anggota, nama_anggota, alamat_anggota, no_hp_anggota, tanggal_daftar_anggota, status_anggota | Formulir pendaftaran anggota |
-| Buku | id_buku, kode_buku, judul_buku, pengarang_buku, penerbit_buku, tahun_terbit_buku, kategori_buku | Daftar koleksi buku |
+| Buku | id_buku, kode_buku, judul_buku, pengarang_buku, penerbit_buku, tahun_terbit_buku | Daftar koleksi buku |
 | Eksemplar | id_eksemplar, kode_eksemplar, id_buku, kondisi_eksemplar, status_eksemplar, tanggal_masuk_eksemplar, asal_perolehan_eksemplar | Catatan penerimaan buku |
 | Petugas | id_petugas, kode_petugas, nama_petugas, no_hp_petugas, status_petugas | Data petugas perpustakaan |
-| Peminjaman | id_peminjaman, no_peminjaman, tanggal_jam_peminjaman, id_anggota, id_petugas, status_peminjaman | Slip peminjaman |
+| Peminjaman | id_peminjaman, no_peminjaman, tanggal_jam_peminjaman, id_anggota, id_petugas | Slip peminjaman |
 | Detail peminjaman | id_detail_peminjaman, id_peminjaman, id_eksemplar, tanggal_jatuh_tempo, tanggal_kembali, jumlah_perpanjangan | Slip peminjaman dan catatan pengembalian |
 | Denda | id_denda, id_detail_peminjaman, tarif_denda, hari_terlambat, jumlah_denda, status_denda, tanggal_bayar_denda, id_petugas | Catatan atau kuitansi denda |
 
@@ -170,6 +170,7 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 | Anggota | nama_anggota | Nama lengkap anggota | Budi Santoso | Wajib diisi | Petugas perpustakaan |
 | Anggota | alamat_anggota | Alamat tempat tinggal anggota | Desa Sukamaju | Wajib diisi | Petugas perpustakaan |
 | Anggota | no_hp_anggota | Nomor HP anggota | 081234567890 | Data pribadi, akses terbatas | Kepala perpustakaan |
+| Anggota | tanggal_daftar_anggota | Tanggal anggota terdaftar | 2026-10-05 | Tanggal yang valid; dicatat saat pendaftaran (PB-01) | Petugas perpustakaan |
 | Anggota | status_anggota | Status keaktifan anggota | aktif | Hanya `aktif` atau `nonaktif`; hanya `aktif` yang boleh meminjam (AB-01) | Kepala perpustakaan |
 | Buku | id_buku | Identitas unik buku | 1 | Unik sebagai identitas buku | Petugas perpustakaan |
 | Buku | kode_buku | Kode identifikasi buku | BK-0101 | Harus unik | Petugas perpustakaan |
@@ -202,11 +203,20 @@ Tarif denda disimpan berdasarkan tarif yang berlaku pada saat peminjaman. Dengan
 | Detail peminjaman | jumlah_perpanjangan | Jumlah perpanjangan yang sudah dilakukan | 1 | Maksimal 1 kali (AB-04) | Petugas perpustakaan |
 | Denda | id_denda | Identitas unik transaksi denda | 1 | Unik sebagai identitas denda | Petugas perpustakaan |
 | Denda | id_detail_peminjaman | Rujukan ke detail peminjaman yang terkena denda | 1 | Harus mengacu ke detail peminjaman yang valid | Petugas perpustakaan |
+| Denda | id_petugas | Rujukan petugas yang menangani denda | 1 | Harus mengacu ke petugas yang valid dan mendukung ketertelusuran (AB-11) | Petugas perpustakaan |
 | Denda | tarif_denda | Tarif denda per hari per buku | 4000 | Ditentukan berdasarkan tarif yang berlaku pada tanggal peminjaman dan tidak berubah kemudian (AB-08, AB-09) | Petugas perpustakaan |
-| Denda | hari_terlambat | Jumlah hari keterlambatan pengembalian | 3 | Dihitung dari keterlambatan pengembalian | Petugas perpustakaan |
+| Denda | hari_terlambat | Jumlah hari keterlambatan pengembalian | 3 | Atribut turunan: `tanggal_kembali − tanggal_jatuh_tempo` pada detail peminjaman; keputusan disimpan atau dihitung ditetapkan di Modul 4 | Petugas perpustakaan |
 | Denda | jumlah_denda | Jumlah uang denda yang ditetapkan pada transaksi | 12000 | Nilai = `tarif_denda × hari_terlambat` dan disimpan karena menjadi jumlah denda yang benar-benar ditagihkan/dibayar | Petugas perpustakaan |
 | Denda | status_denda | Status pembayaran denda | belum lunas | Hanya `belum lunas` atau `lunas`; anggota dengan denda `belum lunas` tidak boleh meminjam (AB-12) | Petugas perpustakaan |
 | Denda | tanggal_bayar_denda | Tanggal pembayaran denda | 2026-10-16 | Diisi ketika denda dibayar | Petugas perpustakaan |
+
+**Catatan keputusan (Modul 3):** saat ERD digambar, entitas kandidat pada bagian 4 dicocokkan dengan kamus data ini, dan hasilnya sebagai berikut.
+
+- `tanggal_daftar_anggota` ditambahkan ke kamus data karena dicatat pada formulir pendaftaran anggota (PB-01).
+- `id_petugas` pada Denda ditambahkan karena relasi petugas menangani denda (AB-11) membutuhkan kunci tamu.
+- `kategori_buku` dihapus dari bagian 4 karena tidak termasuk data katalog pada lingkup layanan dan tidak dipakai oleh kebutuhan informasi mana pun.
+- `status_peminjaman` dihapus dari bagian 4 karena dapat diturunkan dari `tanggal_kembali` pada detail peminjaman, sehingga menyimpannya berisiko tidak konsisten (isu kualitas nomor 2).
+- `hari_terlambat` ditandai sebagai atribut turunan pada ERD; keputusan menyimpan atau menghitungnya ditetapkan saat normalisasi Modul 4. `jumlah_denda` tetap atribut biasa karena sudah diputuskan disimpan sebagai jumlah yang ditagihkan.
 
 ## 9. Kebutuhan non-fungsional data
 
