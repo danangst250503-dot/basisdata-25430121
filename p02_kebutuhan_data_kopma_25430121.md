@@ -139,6 +139,8 @@ Pemeriksaan yang sama saya terapkan ke seluruh kolom matriks, dan kolom `Barang`
 | jenis_transaksi_poin | Jenis transaksi poin | perolehan | Hanya perolehan atau penukaran | Kasir |
 | jumlah_transaksi_poin | Jumlah poin yang diperoleh atau ditukar | 5 | Bilangan bulat > 0 (AB-07, AB-10) | Kasir |
 
+**Catatan (Modul 3):** id_anggota dan tanggal_transaksi_poin tidak dipakai di ERD karena anggota dan tanggal sudah tersedia melalui relasi ke penjualan. Lihat Latihan E.1 pada laporan Pertemuan 3.
+
 ## 9. Kebutuhan non-fungsional data
 
 | Jenis | Ketentuan |
