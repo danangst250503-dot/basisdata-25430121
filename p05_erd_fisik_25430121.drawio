@@ -1,0 +1,269 @@
+<mxfile host="Electron">
+  <diagram id="erdfisik" name="ERD Fisik Perpustakaan Pakde DS">
+    <mxGraphModel dx="1836" dy="1136" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1680" pageHeight="1170" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;" value="ERD Fisik — Perpustakaan Pakde DS (sesuai DDL Proyek 5)" vertex="1">
+          <mxGeometry height="40" width="1600" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#d5e8d4;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="anggota" vertex="1">
+          <mxGeometry height="212" width="440" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r0" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_anggota  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r1" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;UK&lt;/b&gt;  no_anggota  :  CHAR(6), NOT NULL, UNIQUE  (AB-10)" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r2" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="nama_anggota  :  VARCHAR(100), NOT NULL  (pribadi)" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r3" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="alamat_anggota  :  VARCHAR(200), NOT NULL  (pribadi)" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r4" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="no_hp_anggota  :  VARCHAR(20), NULL  (pribadi)" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r5" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tanggal_daftar_anggota  :  DATE, NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="anggota_r6" parent="anggota" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="status_anggota  :  ENUM(aktif,nonaktif), NOT NULL  (AB-01*)" vertex="1">
+          <mxGeometry height="26" width="440" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjaman" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#e1d5e7;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="peminjaman" vertex="1">
+          <mxGeometry height="160" width="440" x="620" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjaman_r0" parent="peminjaman" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_peminjaman  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjaman_r1" parent="peminjaman" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;UK&lt;/b&gt;  no_peminjaman  :  CHAR(14), NOT NULL, UNIQUE" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjaman_r2" parent="peminjaman" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tanggal_jam_peminjaman  :  DATETIME, NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjaman_r3" parent="peminjaman" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK&lt;/b&gt;  id_anggota  :  INT, NOT NULL  -&gt; anggota  (AB-01*)" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="peminjaman_r4" parent="peminjaman" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK&lt;/b&gt;  id_petugas  :  INT, NOT NULL  -&gt; petugas  (AB-11)" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="petugas" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#dae8fc;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="petugas" vertex="1">
+          <mxGeometry height="160" width="440" x="1200" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="petugas_r0" parent="petugas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_petugas  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="petugas_r1" parent="petugas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;UK&lt;/b&gt;  kode_petugas  :  CHAR(6), NOT NULL, UNIQUE" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="petugas_r2" parent="petugas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="nama_petugas  :  VARCHAR(100), NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="petugas_r3" parent="petugas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="no_hp_petugas  :  VARCHAR(20), NULL  (pribadi)" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="petugas_r4" parent="petugas" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="status_petugas  :  ENUM(aktif,nonaktif), NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#fff2cc;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="eksemplar" vertex="1">
+          <mxGeometry height="212" width="440" x="40" y="432" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r0" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_eksemplar  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r1" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;UK&lt;/b&gt;  kode_eksemplar  :  CHAR(7), NOT NULL, UNIQUE  (AB-10)" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r2" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK&lt;/b&gt;  id_buku  :  INT, NOT NULL  -&gt; buku  (AB-14)" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r3" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="kondisi_eksemplar  :  ENUM(baik,rusak ringan,rusak berat), NOT NULL  (AB-06)" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r4" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="status_eksemplar  :  ENUM(tersedia,dipinjam,tidak tersedia), NOT NULL  (AB-06)" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r5" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tanggal_masuk_eksemplar  :  DATE, NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="eksemplar_r6" parent="eksemplar" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="asal_perolehan_eksemplar  :  VARCHAR(50), NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="detail" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#f8cecc;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="detail_peminjaman" vertex="1">
+          <mxGeometry height="212" width="440" x="620" y="432" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r0" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_detail_peminjaman  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r1" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK&lt;/b&gt;  id_peminjaman  :  INT, NOT NULL  -&gt; peminjaman  (ON DELETE CASCADE)" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r2" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK&lt;/b&gt;  id_eksemplar  :  INT, NOT NULL  -&gt; eksemplar" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r3" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tanggal_jatuh_tempo  :  DATE, NOT NULL  (AB-03: masa pinjam 7 hari)" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r4" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tanggal_kembali  :  DATE, NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r5" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="jumlah_perpanjangan  :  TINYINT UNSIGNED, NOT NULL, DEFAULT 0, CHECK &lt;= 1  (AB-04)" vertex="1">
+          <mxGeometry height="26" width="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="detail_r6" parent="detail" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;UK&lt;/b&gt;  UNIQUE (id_peminjaman, id_eksemplar)" vertex="1">
+          <mxGeometry height="26" width="440" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="denda" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#d0e0e3;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="denda" vertex="1">
+          <mxGeometry height="212" width="440" x="1200" y="432" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r0" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_denda  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r1" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK,UK&lt;/b&gt;  id_detail_peminjaman  :  INT, NOT NULL, UNIQUE  -&gt; detail_peminjaman" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r2" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;FK&lt;/b&gt;  id_petugas  :  INT, NOT NULL  -&gt; petugas  (AB-11)" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r3" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tarif_denda  :  DECIMAL(12,2), NOT NULL, CHECK &gt;= 0  (AB-08, AB-09)" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r4" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="jumlah_denda  :  DECIMAL(12,2), NOT NULL, DEFAULT 0, CHECK &gt;= 0" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r5" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="status_denda  :  ENUM(belum lunas,lunas), NOT NULL, DEFAULT &#39;belum lunas&#39;  (AB-12)" vertex="1">
+          <mxGeometry height="26" width="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="denda_r6" parent="denda" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tanggal_bayar_denda  :  DATE, NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="buku" parent="1" style="swimlane;html=1;startSize=30;horizontal=1;fontStyle=1;fontSize=13;fillColor=#ffe6cc;strokeColor=#333333;align=center;verticalAlign=middle;collapsible=0;rounded=0;" value="buku" vertex="1">
+          <mxGeometry height="186" width="440" x="40" y="744" as="geometry" />
+        </mxCell>
+        <mxCell id="buku_r0" parent="buku" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;PK&lt;/b&gt;  id_buku  :  INT, NOT NULL, AI" vertex="1">
+          <mxGeometry height="26" width="440" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="buku_r1" parent="buku" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="&lt;b&gt;UK&lt;/b&gt;  kode_buku  :  CHAR(7), NOT NULL, UNIQUE" vertex="1">
+          <mxGeometry height="26" width="440" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="buku_r2" parent="buku" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="judul_buku  :  VARCHAR(200), NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="buku_r3" parent="buku" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="pengarang_buku  :  VARCHAR(100), NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="buku_r4" parent="buku" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="penerbit_buku  :  VARCHAR(100), NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="buku_r5" parent="buku" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=8;spacingRight=6;overflow=hidden;whiteSpace=nowrap;fillColor=#ffffff;strokeColor=#BFBFBF;fontStyle=0;fontSize=10;" value="tahun_terbit_buku  :  YEAR, NOT NULL" vertex="1">
+          <mxGeometry height="26" width="440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" edge="1" parent="1" source="buku" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERoneToMany;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="eksemplar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e0_ls" connectable="0" parent="e0" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.72" as="geometry">
+            <mxPoint x="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e0_lt" connectable="0" parent="e0" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1..N (AB-14*)" vertex="1">
+          <mxGeometry relative="1" x="0.72" as="geometry">
+            <mxPoint x="39" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="anggota" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="peminjaman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1_ls" connectable="0" parent="e1" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.76" as="geometry">
+            <mxPoint x="-9" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1_lt" connectable="0" parent="e1" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="0..N" vertex="1">
+          <mxGeometry relative="1" x="0.669" as="geometry">
+            <mxPoint x="4" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="petugas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="peminjaman">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_ls" connectable="0" parent="e2" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.76" as="geometry">
+            <mxPoint x="6" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2_lt" connectable="0" parent="e2" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="0..N" vertex="1">
+          <mxGeometry relative="1" x="0.669" as="geometry">
+            <mxPoint x="-6" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="peminjaman" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERoneToMany;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="detail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3_ls" connectable="0" parent="e3" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.72" as="geometry">
+            <mxPoint x="14" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3_lt" connectable="0" parent="e3" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1..6 (AB-02, AB-13*)" vertex="1">
+          <mxGeometry relative="1" x="0.72" as="geometry">
+            <mxPoint x="55" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="eksemplar" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="detail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4_ls" connectable="0" parent="e4" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.76" as="geometry">
+            <mxPoint x="-10" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4_lt" connectable="0" parent="e4" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="0..N (AB-07*)" vertex="1">
+          <mxGeometry relative="1" x="0.375" as="geometry">
+            <mxPoint x="6" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="detail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERzeroToOne;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="denda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5_ls" connectable="0" parent="e5" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.76" as="geometry">
+            <mxPoint x="-10" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5_lt" connectable="0" parent="e5" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.681" as="geometry">
+            <mxPoint x="7" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="petugas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;startFill=0;endFill=0;startSize=10;endSize=10;strokeColor=#333333;strokeWidth=1.2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="denda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6_ls" connectable="0" parent="e6" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.72" as="geometry">
+            <mxPoint x="13" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6_lt" connectable="0" parent="e6" style="edgeLabel;html=1;fontSize=10;resizable=0;align=center;verticalAlign=middle;labelBackgroundColor=#ffffff;" value="0..N" vertex="1">
+          <mxGeometry relative="1" x="0.72" as="geometry">
+            <mxPoint x="19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;rounded=0;" value="&lt;b&gt;CATATAN NILAI TURUNAN:&lt;/b&gt;  hari_terlambat = tanggal_kembali − tanggal_jatuh_tempo, tidak disimpan sebagai kolom (keputusan Modul 4); dihitung saat dibutuhkan. jumlah_denda disimpan sebagai jumlah yang ditagihkan." vertex="1">
+          <mxGeometry height="56" width="1020" x="620" y="874" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;rounded=0;" value="&lt;b&gt;KETERANGAN&lt;/b&gt;&lt;br&gt;PK = kunci primer   FK = kunci tamu   UK = kunci unik   AI = AUTO_INCREMENT&lt;br&gt;NOT NULL / NULL = wajib / boleh kosong   DEFAULT = nilai bawaan   CHECK = batasan nilai&lt;br&gt;ENUM(...) = pilihan nilai terbatas   (pribadi) = data pribadi (akses terbatas)&lt;br&gt;Kardinalitas: 1 = tepat satu; 0..1 = nol atau satu; 0..N = nol atau banyak; 1..N = satu atau banyak; 1..6 = satu sampai enam.&lt;br&gt;Nilai turunan tidak digambar sebagai kolom.&lt;br&gt;* = aturan tidak sepenuhnya ditegakkan DDL; lihat catatan aturan bisnis." vertex="1">
+          <mxGeometry height="124" width="1020" x="620" y="744" as="geometry" />
+        </mxCell>
+        <mxCell id="ab_validation_note" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;spacingTop=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;rounded=0;" value="&lt;b&gt;CATATAN ATURAN BISNIS (perlu validasi proses/aplikasi bila belum ditegakkan oleh DDL):&lt;/b&gt;&lt;br&gt;AB-01: hanya anggota aktif boleh meminjam; FK ke anggota saja tidak memeriksa status_anggota.&lt;br&gt;AB-02 + AB-13: setiap peminjaman harus berisi 1–6 detail; batas jumlah perlu divalidasi saat transaksi.&lt;br&gt;AB-05: perpanjangan harus diminta sebelum jatuh tempo. AB-06: eksemplar hanya boleh dipinjam bila status=tersedia dan kondisi=baik.&lt;br&gt;AB-07: satu eksemplar tidak boleh berada pada lebih dari satu peminjaman aktif bersamaan; UNIQUE pasangan (id_peminjaman,id_eksemplar) hanya mencegah duplikasi dalam satu transaksi.&lt;br&gt;AB-11: DDL mencatat petugas pada peminjaman dan denda; petugas untuk perpanjangan/pengembalian/pembayaran belum tercatat terpisah per kejadian.&lt;br&gt;AB-12: cegah peminjaman baru saat anggota masih memiliki denda belum lunas. AB-14: setiap buku harus memiliki minimal satu eksemplar." vertex="1">
+          <mxGeometry height="128" width="1600" x="40" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="ttd" parent="1" style="text;html=1;align=right;verticalAlign=middle;fontSize=12;fontStyle=2;" value="Danang Setiawan — 25430121 — Kelas A" vertex="1">
+          <mxGeometry height="26" width="610" x="1030" y="1112" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
